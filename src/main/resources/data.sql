@@ -9,3 +9,6 @@ CREATE TABLE contacts (
   address VARCHAR(250),
   zip_code VARCHAR(6)
 );
+
+INSERT INTO contacts (first_name, last_name, phone_number, city, address, zip_code) 
+VALUES ('Mike', 'Nowak', 999999999, 'Lipki Male', 'Lipki Male 111', '49-039'); 
