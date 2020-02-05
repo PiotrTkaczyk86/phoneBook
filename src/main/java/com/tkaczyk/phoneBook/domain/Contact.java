@@ -1,20 +1,27 @@
 package com.tkaczyk.phoneBook.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
+@Entity
 public class Contact {
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
 	@NotNull
 	private String firstName;
 	
 	@NotNull
-	private String sureName;
+	private String lastName;
 	
 	@Range(min=111111111, max=999999999)
-	private int phone_number;
+	private int phoneNumber;
 	
 	private String city;
 	
@@ -23,26 +30,24 @@ public class Contact {
 	private String zipCode;
 
 	public Contact() {
-		
+
 	}
 
-	public Contact(int id, @NotNull String firstName, @NotNull String sureName,
-			@Range(min = 111111111, max = 999999999) int phone_number, String city, String address, String zipCode) {
-		super();
-		this.id = id;
+	public Contact(@NotNull String firstName, @NotNull String lastName,
+			@Range(min = 111111111, max = 999999999) int phoneNumber, String city, String address, String zipCode) {
 		this.firstName = firstName;
-		this.sureName = sureName;
-		this.phone_number = phone_number;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
 		this.city = city;
 		this.address = address;
 		this.zipCode = zipCode;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -54,20 +59,20 @@ public class Contact {
 		this.firstName = firstName;
 	}
 
-	public String getSureName() {
-		return sureName;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setSureName(String sureName) {
-		this.sureName = sureName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public int getPhone_number() {
-		return phone_number;
+	public int getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone_number(int phone_number) {
-		this.phone_number = phone_number;
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getCity() {
@@ -92,20 +97,6 @@ public class Contact {
 
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + id;
-		result = prime * result + phone_number;
-		result = prime * result + ((sureName == null) ? 0 : sureName.hashCode());
-		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
-		return result;
 	}
 
 	@Override
@@ -134,12 +125,12 @@ public class Contact {
 			return false;
 		if (id != other.id)
 			return false;
-		if (phone_number != other.phone_number)
+		if (phoneNumber != other.phoneNumber)
 			return false;
-		if (sureName == null) {
-			if (other.sureName != null)
+		if (lastName == null) {
+			if (other.lastName != null)
 				return false;
-		} else if (!sureName.equals(other.sureName))
+		} else if (!lastName.equals(other.lastName))
 			return false;
 		if (zipCode == null) {
 			if (other.zipCode != null)
@@ -151,8 +142,8 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact [id=" + id + ", firstName=" + firstName + ", sureName=" + sureName + ", phone_number="
-				+ phone_number + ", city=" + city + ", address=" + address + ", zipCode=" + zipCode + "]";
+		return "Contact [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", ="
+				+ phoneNumber + ", city=" + city + ", address=" + address + ", zipCode=" + zipCode + "]";
 	}
 	
 	
