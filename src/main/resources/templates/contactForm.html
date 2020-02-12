@@ -12,30 +12,29 @@
 				<form class="form-horizontal" th:object="${contact}" th:action="@{/add}" th:method="post">
 			        <div class="form-group">
 			            <label class="control-label">First Name:</label><br />
-						<input type="text" th:field="*{firstName}">
+						<input type="text" th:field="*{firstName}" required>
 			        </div>				    		
 			        <div class="form-group">
 			            <label class="control-label">Last Name:</label><br />
-						<input type="text" th:field="*{lastName}">
+						<input type="text" th:field="*{lastName}" required>
 			        </div>
 			        <div class="form-group">
 			            <label class="control-label">Phone Number:</label><br />
-						<input type="text" th:field="*{phoneNumber}">
+						<input type="text" th:field="*{phoneNumber}" required><br />
+						<span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Phone number must be between 111111111 and 999999999!</span>
 			        </div>
 			        <div class="form-group">
 			            <label class="control-label">City:</label><br />
-						<input type="text" th:field="*{city}">
+						<input type="text" th:field="*{city}" required>
 			        </div>
 			        <div class="form-group">
 			            <label class="control-label">Address:</label><br />
-						<input type="text" th:field="*{address}">
+						<input type="text" th:field="*{address}" required>
 			        </div>
 			        <div class="form-group">
 			            <label class="control-label">Zip code:</label><br />
-						<input type="text" th:field="*{zipCode}">
-<!--			            <input type="number" class="form-control" th:field="*{age}"/>
-			            <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"/>
--->			        </div>
+						<input type="text" th:field="*{zipCode}" pattern="[0-9][0-9]-[0-9][0-9][0-9]" required>
+			        </div>
 			        <div class="row">
 			            <button type="submit" class="btn btn-primary">Add Contact</button>
 			        </div>
