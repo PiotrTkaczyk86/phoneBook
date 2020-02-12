@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.Range;
 @Entity
 public class Contact {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@NotNull
@@ -32,17 +32,7 @@ public class Contact {
 	public Contact() {
 
 	}
-
-	public Contact(@NotNull String firstName, @NotNull String lastName,
-			@Range(min = 111111111, max = 999999999) int phoneNumber, String city, String address, String zipCode) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-		this.city = city;
-		this.address = address;
-		this.zipCode = zipCode;
-	}
-
+	
 	public long getId() {
 		return id;
 	}
