@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tkaczyk.phoneBook.domain.Contact;
 import com.tkaczyk.phoneBook.services.ContactsService;
@@ -21,16 +22,28 @@ public class ContactsController {
 	public String getAllContacts(Model model) {
 		List<Contact> allContacts = contactsService.getAllContacts();
 		model.addAttribute("contacts", allContacts);
-		System.out.println(allContacts.toString());
 		return "index";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteContact(@PathVariable("id") Long id, Model model) {
-		System.out.println("ContactsController - id:" + id );
 		contactsService.deleteContact(id);
 		contactsService.printContacts();
 		model.addAttribute("contacts", contactsService.getAllContacts());
+		return "index";
+	}
+	
+	@GetMapping("/add")
+	public String contactForm(Model model) {
+        model.addAttribute("contact", new Contact());
+		return "contactForm";
+	}
+	
+	@PostMapping("/add")
+	public String addContact(@ModelAttribute Contact contact, Model model) {
+		System.out.println(contact.toString());
+		contactsService.saveContact(contact);
+		getAllContacts(model);
 		return "index";
 	}
 }

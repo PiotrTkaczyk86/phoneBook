@@ -10,8 +10,4 @@ import com.tkaczyk.phoneBook.domain.Contact;
 @Repository
 public interface ContactRepository extends CrudRepository<Contact, Long> {
 	List<Contact> findAll();
-	
-	Contact findContactById(int id);
-
-//	void deleteById(Integer id);
 }

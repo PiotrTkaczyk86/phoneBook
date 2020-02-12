@@ -20,7 +20,11 @@ public class ContactsService {
 	}
 
 	public void deleteContact(Long id) {
-		contactsRepository.deleteById(id);;
+		contactsRepository.deleteById(id);
+	}
+
+	public void saveContact(Contact contact) {
+		contactsRepository.save(contact);
 	}
 
 	public void printContacts() {
