@@ -33,7 +33,7 @@ public class ContactsController {
 		contactsService.deleteContact(id);
 		contactsService.printContacts();
 		model.addAttribute("contacts", contactsService.getAllContacts());
-		return "index";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/add")
@@ -52,6 +52,6 @@ public class ContactsController {
 		System.out.println(contact.toString());
 		contactsService.saveContact(contact);
 		getAllContacts(model);
-		return "index";
+		return "redirect:/";
 	}
 }
